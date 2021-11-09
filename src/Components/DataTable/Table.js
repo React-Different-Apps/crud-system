@@ -12,7 +12,7 @@ import {Button} from '@mui/material'
 import {Link} from 'react-router-dom'
 import {GlobalContext} from '../Context/GlobalState'
 const DataTable = () => {
-    const {notes}=useContext(GlobalContext)
+    const {notes,removeNote}=useContext(GlobalContext)
     return (
   <Container>
     <Link to='/add-note'>  
@@ -37,10 +37,10 @@ const DataTable = () => {
               <TableCell align="right">{note.title}</TableCell>
               <TableCell align="right">{note.details}</TableCell>
               <TableCell align="right">
-              <Link to='/edit-note' underline="none">    
+              <Link to={`/edit-note/${note.id}`} underline="none">    
               <Button sx={{marginRight:2,}} color="success" variant="contained">Edit</Button>
               </Link>
-              <Button  variant="outlined" color="error">delete</Button>
+              <Button  variant="outlined" color="error" onClick={()=>removeNote(note.id)}>delete</Button>
               </TableCell>
             </TableRow>
         )}

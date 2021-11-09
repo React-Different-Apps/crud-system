@@ -17,8 +17,20 @@ export const GlobalContext=createContext(InitialState)
 export const GlobalProvider=({children})=>{
     const [state,dispatch]=useReducer(AppReducer,InitialState)
 
+    //Delete action
+    const removeNote= (id) => dispatch({
+        type:'REMOVE_NOTE',
+        payload:id
+    })
+
+    //Add action
+    const addNote= (id) => dispatch({
+        type:'ADD_NOTE',
+        payload:id
+    })
+
     return(
-        <GlobalContext.Provider value={{notes:state.notes}}>
+        <GlobalContext.Provider value={{notes:state.notes, removeNote,addNote}}>
            {children}
         </GlobalContext.Provider>
     )
