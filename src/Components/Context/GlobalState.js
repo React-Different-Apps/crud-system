@@ -4,9 +4,7 @@ import AppReducer from './AppReducer'
 
 export const InitialState={
     notes:[
-        {id:1, title:'first note', details: 'note 1 desc'},
-        {id:2, title:'sec note', details: 'note 2 desc'},
-        {id:3, title:'third note', details: 'note 3 desc'},
+        
     ]
 }
 
@@ -29,8 +27,14 @@ export const GlobalProvider=({children})=>{
         payload:id
     })
 
+    //Edit action
+    const editNote= (id) => dispatch({
+        type:'EDIT_NOTE',
+        payload:id
+    })
+
     return(
-        <GlobalContext.Provider value={{notes:state.notes, removeNote,addNote}}>
+        <GlobalContext.Provider value={{notes:state.notes, removeNote,addNote,editNote}}>
            {children}
         </GlobalContext.Provider>
     )
